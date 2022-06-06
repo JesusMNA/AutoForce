@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce | Atención al cliente</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/atencion.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="./Imagenes/Diseño_Autoforce.png" alt="logo">
+            <a href="/">
+                <h1>AutoForce</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <% if(!session) {%>
+                <a class="header-right__ingresar" href="/ingresar">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Ingresar</p>
+                </a>
+            <% } else { %>
+                <% if(usuario.administrador) { %>
+                    <a href="/administrador" class="header-right__administrar">
+                        <i class="fa-solid fa-hammer"></i>
+                        <p>Administrador</p>
+                    </a>
+                <% } %>
+                    <a class="header-right__carrito" href="/carrito">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Carrito</p>
+                    </a>
+                    <a class="header-right__ingresar" href="/cerrarSesion">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Cerrar sesion</p>
+                    </a>
+                <% } %>
+        </div>
+    </header>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-left-cards">
+                <% if(session) { %>
+                    <a class="nav-left-cards__perfil" href="/perfil">
+                        <img src="./Imagenes/Usuarios/<%=usuario.foto%>" alt="Foto de perfil">
+                        <p><%=usuario.nombre%></p>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="nav-right"></div>
+    </nav>
+    <main>
+        <div class="main-left">
+            <form class="main-left__form" action="/agregarAtencion" method="post">
+                <p>Contactanos</p>
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre">
+                <label for="numero">Número de teléfono</label>
+                <input type="number" name="numero">
+                <label for="correo">Correo electrónico</label>
+                <input type="email" name="correo" placeholder="Correo@example.com">
+                <label for="fecha">fecha</label>
+                <input type="date" name="fecha">
+                <label for="informacion">Cuentanos que pasa</label>
+                <input type="text" name="informacion">
+                <input type="submit" value="Enviar" id="enviar">
+            </form>
+        </div>
+        <div class="main-right">
+            <div class="main-right__informacion">
+                <h1>Atención al cliente</h1>
+                <p>Nuestro número de contacto es: XXX-XXX-XXXX</p>
+                <P>Nuestro correo de contacto es: Correo@ejemplo.com</P>
+                <a href="/">Regresar</a>
+            </div>
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/20834a20cc.js" crossorigin="anonymous"></script>
+    <script src="./atencion.js"></script>
+</body>
+
+</html>

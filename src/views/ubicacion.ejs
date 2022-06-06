@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce | Ubicación</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/ubicacion.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="./Imagenes/Diseño_Autoforce.png" alt="logo">
+            <a href="/">
+                <h1>AutoForce</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <% if(!session) {%>
+                <a class="header-right__ingresar" href="/ingresar">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Ingresar</p>
+                </a>
+            <% } else { %>
+                <% if(usuario.administrador) { %>
+                    <a href="/administrador" class="header-right__administrar">
+                        <i class="fa-solid fa-hammer"></i>
+                        <p>Administrador</p>
+                    </a>
+                <% } %>
+                    <a class="header-right__carrito" href="/carrito">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Carrito</p>
+                    </a>
+                    <a class="header-right__ingresar" href="/cerrarSesion">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Cerrar sesion</p>
+                    </a>
+                <% } %>
+        </div>
+    </header>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-left-cards">
+                <% if(session) { %>
+                    <a class="nav-left-cards__perfil" href="/perfil">
+                        <img src="./Imagenes/Usuarios/<%=usuario.foto%>" alt="Foto de perfil">
+                        <p><%=usuario.nombre%></p>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="nav-right"></div>
+    </nav>
+    <main>
+        <div class="main-right">
+            <div class="mapa" id="map"></div>
+        </div>
+        <div class="main-left">
+            <div class="main-left__titulo">
+                <i class="fa-solid fa-location-dot"></i>
+                <h1>Ubicación de la tienda</h1>
+            </div>
+            <a href="/">Regresar</a>
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/20834a20cc.js" crossorigin="anonymous"></script>
+    <script src="./js/ubicacion.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDaeWicvigtP9xPv919E-RNoxfvC-Hqik&callback=iniciarMap"></script>
+</body>
+
+</html>

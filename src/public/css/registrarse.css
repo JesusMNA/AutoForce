@@ -1,0 +1,237 @@
+:root {
+    /* Tamaño fuentes */
+    --small: 1.5rem;
+    --medium: 2.5rem;
+    --large: 3.2rem;
+    /* Colores */
+    --white: #fefefe;
+    --soft-white: #efefef;
+    --black: #101010;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    background: rgb(227, 227, 225);
+    background-size: 100% 200%;
+    font-family: 'Roboto', sans-serif;
+}
+
+form {
+    width: 100%;
+    display: flex;
+}
+
+.section-usuario {
+    width: 66%;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgb(195, 195, 184);
+}
+
+.usuario-encabezado {
+    width: 100%;
+    height: 70px;
+    display: flex;
+}
+
+.usuario-encabezado img {
+    width: 65px;
+    height: 60px;
+    margin-left: 12px;
+}
+
+.usuario-encabezado a {
+    text-decoration: none;
+    margin: 0 auto;
+}
+
+.usuario-encabezado a h1 {
+    font-size: 3.4rem;
+    color: var(--black);
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+}
+
+.usuario-informacion {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.usuario-informacion-personal {
+    width: 50%;
+    min-width: 320px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.usuario-informacion label {
+    font-size: var(--small);
+    margin-top: 15px;
+    margin-left: 20px;
+}
+
+.usuario-informacion input {
+    width: 350px;
+    min-width: 280px;
+    height: 32px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    padding: 4px;
+    background-color: rgb(216, 216, 207);
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px var(--black);
+    font-size: var(--small);
+}
+
+.usuario-informacion input:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px var(--black);
+}
+
+.usuario-informacion-extra {
+    width: 50%;
+    min-width: 320px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+}
+
+.usuario-informacion-extra select {
+    width: 350px;
+    min-width: 200px;
+    height: 32px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    padding: 4px;
+    background-color: rgb(216, 216, 207);
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px var(--black);
+    font-size: var(--small);
+}
+
+.usuario-informacion-extra select:focus {
+    outline: none;
+    box-shadow: 0px 0px 8px var(--black);
+}
+
+.usuario-informacion-confirmar {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.usuario-informacion-confirmar input {
+    width: 150px;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+    background-color: var(--black);
+    color: var(--soft-white);
+    border-radius: 50px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.usuario-informacion-confirmar input:hover {
+    background-color: #222;
+    box-shadow: 0px 0px 8px var(--black);
+}
+
+.section-carro {
+    width: 34%;
+    display: flex;
+    flex-direction: column;
+}
+
+.section-carro-titulo {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-carro-titulo h1 {
+    font-size: 3.4rem;
+    color: var(--black);
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+}
+
+.section-carro-informacion {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 12px;
+}
+
+
+.informacion-carro {
+    height: 100px;
+    background-color: rgb(216, 216, 207);
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px var(--black);
+    font-size: var(--small);
+    overflow-y: auto;
+}
+
+.carro-vacio {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.carro-vacio p {
+    font-size: 2rem;
+    margin-left: 12px;
+}
+
+.card-carros {
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.card-carro {
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card-carro img {
+    width: 80px;
+    height: 80px;
+}
+
+.card-carro p {
+    font-size: 2rem;
+    margin-left: 12px;
+}
+
+.radio-carro {
+    margin-left: 20px;
+}

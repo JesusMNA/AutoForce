@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce | Ingresar</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/ingresar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <section class="card">
+            <div class="card-ingresar__titulo">
+                <a href="/">
+                    <h1>AutoForce</h1>
+                </a>
+            </div>
+            <form class="card-ingresar__form" action="/iniciarSesion" method="post">
+                <p>Iniciar sesión</p>
+                <label for="correo">Correo Electrónico</label>
+                <input class="form__input" type="text" name="correo" id="correo" placeholder="Correo@example.com..." required>
+                <label for="contraseña">Contraseña</label>
+                <input class="form__input" type="password" name="contraseña" id="contraseña" placeholder="*********" required>
+                <input type="submit" value="Iniciar sesión" class="form__button">
+            </form>
+            <div class="card-ingresar__extra">
+                <a href="/registrarse">Registrarse</a>
+                <a href="/recuperar">Recuperar contraseña</a>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce | Administrador</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/administrador.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="./Imagenes/Diseño_Autoforce.png" alt="logo">
+            <a href="/">
+                <h1>AutoForce</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <% if(!session) {%>
+                <a class="header-right__ingresar" href="/ingresar">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Ingresar</p>
+                </a>
+            <% } else { %>
+                <% if(usuario.administrador) { %>
+                    <a href="/administrador" class="header-right__administrar">
+                        <i class="fa-solid fa-hammer"></i>
+                        <p>Administrador</p>
+                    </a>
+                <% } %>
+                    <a class="header-right__carrito" href="/carrito">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Carrito</p>
+                    </a>
+                    <a class="header-right__ingresar" href="/cerrarSesion">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Cerrar sesion</p>
+                    </a>
+                <% } %>
+        </div>
+    </header>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-left-cards">
+                <% if(session) { %>
+                    <a class="nav-left-cards__perfil" href="/perfil">
+                        <img src="./Imagenes/Usuarios/<%=usuario.foto%>" alt="Foto de perfil">
+                        <p><%=usuario.nombre%></p>
+                    </a>
+                <% } %>
+            </div>
+            <div class="nav-left__searchBar">
+                <input type="text" class="nav__searchBar__text" name="buscar" id="buscar">
+                <label for="buscar"><i class="fa-solid fa-magnifying-glass"></i></label>
+            </div>
+        </div>
+        <div class="nav-right"></div>
+    </nav>
+    <main>
+        <section class="tablas">
+            <div class="lbl-menu">
+                <label for="radio1">Usuarios</label>
+                <label for="radio2">Administradores</label>
+                <label for="radio3">Carros</label>
+                <label for="radio4">Productos</label>
+                <label for="radio5">Relaciones</label>
+            </div>
+            <div class="content">
+                <input type="radio" name="radio" id="radio1">
+                <div class="tab1">
+                    <div class="tab1-agregar">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <table class="tabla">
+                        <thead class="tabla-titulo">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Dirección</th>
+                                <th><button class="agregar" id="aUsuario"><i class="fa-solid fa-plus"></i></button></th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla-cuerpo">
+                            <% if (usuarios) { %>
+                            <%      usuarios.forEach(usuario => {  %>
+                                <tr class="elemento">
+                                    <td class="td-imagen"><img id="usuarioFoto-<%=usuario.id%>" src="./Imagenes/Usuarios/<%= usuario.foto %>" alt="Foto de perfil"></td>
+                                    <td id="usuarioNombre-<%=usuario.id%>"><%= usuario.nombre %></td>
+                                    <td id="usuarioCorreo-<%=usuario.id%>"><%= usuario.correo %></td>
+                                    <td id="usuarioTelefono-<%=usuario.id%>"><%= usuario.telefono %></td>
+                                    <td id="usuarioDireccion-<%=usuario.id%>"><%= usuario.direccion %></td>
+                                    <td><button id="<%=usuario.id%>u" class="eUsuario"><i class="fa-solid fa-pencil"></i></button></td>
+                                    <td><button id="<%=usuario.id%>ue" class="dUsuario"><i class="fa-solid fa-trash"></i></button></td>
+                                </tr>
+                            <%      }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="radio" name="radio" id="radio2">
+                <div class="tab2">
+                    <table class="tabla">
+                        <thead class="tabla-titulo">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Correo</th>
+                                <th>Telefono</th>
+                                <th>Dirección</th>
+                                <th><button class="agregar" id="aAdministrador"><i class="fa-solid fa-plus"></i></button></th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla-cuerpo">
+                            <% if(administradores) { %>
+                            <%      administradores.forEach(administrador => { %>
+                                <tr class="elemento">
+                                    <td class="td-imagen"><img id="administradorFoto-<%=administrador.id%>" src="./Imagenes/Usuarios/<%=administrador.foto%>" alt="Foto de perfil"></td>
+                                    <td id="administradorNombre-<%=administrador.id%>"><%= administrador.nombre %></td>
+                                    <td id="administradorCorreo-<%=administrador.id%>"><%= administrador.correo %></td>
+                                    <td id="administradorTelefono-<%=administrador.id%>"><%= administrador.telefono %></td>
+                                    <td id="administradorDireccion-<%=administrador.id%>"><%= administrador.direccion %></td>
+                                    <td><button id="<%=administrador.id%>a" class="eAdministrador"><i class="fa-solid fa-pencil"></i></button></td>
+                                    <td><button id="<%=administrador.id%>ae" class="dAdministrador"><i class="fa-solid fa-trash"></i></button></td>
+                                </tr>
+                            <%      }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="radio" name="radio" id="radio3">
+                <div class="tab3">
+                    <table class="tabla">
+                        <thead class="tabla-titulo">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Modelo</th>
+                                <th>Marca</th>
+                                <th>Año</th>
+                                <th><button class="agregar" id="aCarro"><i class="fa-solid fa-plus"></i></button></th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla-cuerpo">
+                            <% if(carros) { %>
+                            <%      carros.forEach(carro => { %>
+                                <tr class="elemento">
+                                    <td class="td-imagen"><img id="carroFoto-<%=carro.id%>" src="./Imagenes/carros/<%=carro.foto%>" alt="Foto del carro"></td>
+                                    <td id="carroModelo-<%=carro.id%>"><%= carro.modelo %></td>
+                                    <td id="carroMarca-<%=carro.id%>"><%= carro.marca %></td>
+                                    <td id="carroAño-<%=carro.id%>"><%= carro.año %></td>
+                                    <td><button id="<%=carro.id%>c" class="eCarro"><i class="fa-solid fa-pencil"></i></button></td>
+                                    <td><button id="<%=carro.id%>ce" class="dCarro"><i class="fa-solid fa-trash"></i></button></td>
+                                </tr>
+                            <%      }) %> 
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="radio" name="radio" id="radio4">
+                <div class="tab4">
+                    <table class="tabla">
+                        <thead class="tabla-titulo">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nombre</th>
+                                <th>Precio</th>
+                                <th>Cantidad</th>
+                                <th><button class="agregar" id="aProducto"><i class="fa-solid fa-plus"></i></button></th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla-cuerpo">
+                            <% if(productos) { %>
+                            <%      productos.forEach(producto => { %>
+                                <tr class="elemento">
+                                    <td class="td-imagen"><img id="productoFoto-<%=producto.id%>" src="./Imagenes/Productos/<%=producto.foto%>" alt="Foto del producto"></td>
+                                    <td id="productoNombre-<%=producto.id%>"><%= producto.nombre %></td>
+                                    <td id="productoPrecio-<%=producto.id%>"><%= producto.precio %></td>
+                                    <td id="productoCantidad-<%=producto.id%>"><%= producto.cantidad %></td>
+                                    <td><button id="<%=producto.id%>p" class="eProducto"><i class="fa-solid fa-pencil"></i></button></td>
+                                    <td><button id="<%=producto.id%>pe" class="dProducto"><i class="fa-solid fa-trash"></i></button></td>
+                                </tr>
+                            <%      }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <input type="radio" name="radio" id="radio5">
+                <div class="tab5">
+                    <table class="tabla">
+                        <thead class="tabla-titulo">
+                            <tr>
+                                <th>Foto</th>
+                                <th>Carro</th>
+                                <th>Foto</th>
+                                <th>Producto</th>
+                                <th><button class="agregar" id="aOferta"><i class="fa-solid fa-plus"></i></button></th>
+                            </tr>
+                        </thead>
+                        <tbody class="tabla-cuerpo">
+                            <% if(relaciones) { %>
+                            <%      relaciones.forEach(relacion => { %>
+                            <%          carros.forEach(carro => { %>
+                            <%              productos.forEach(producto => { %>
+                            <%                  if (carro.id == relacion.id_carro && producto.id == relacion.id_producto) { %>
+                                <tr class="elemento">
+                                    <td class="td-imagen"><img src="./Imagenes/carros/<%=carro.foto%>" alt="Foto del carro"></td>
+                                    <td id="carroRelacion-<%=relacion.id%>"><%=carro.marca%> <%=carro.modelo%> <%=carro.año%></td>
+                                    <td class="td-imagen"><img src="./Imagenes/Productos/<%=producto.foto%>" alt="Foto del producto"></td>
+                                    <td><%=producto.nombre%></td>
+                                    <td><button id="<%=relacion.id%>r" class="eRelacion"><i class="fa-solid fa-pencil"></i></button></td>
+                                    <td><button id="<%=relacion.id%>re" class="dRelacion"><i class="fa-solid fa-trash"></i></button></td>
+                                </tr>
+                            <%                  } %>
+                            <%              })  %>  
+                            <%          }) %>
+                            <%      }) %>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <section class="modal-usuario" id="modal-usuario">
+        <div class="modal-container">
+            <form id="mEditarUsuario" class="card-ingresar__form">
+                <label for="uFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="uFotografia">
+                <label for="uNombre">Nombre</label>
+                <input class="form__input" type="text" name="nombre" id="uNombre">
+                <label for="uCorreo">Correo</label>
+                <input class="form__input" type="email" name="correo" id="uCorreo">
+                <label for="uTelefono">Teléfono</label>
+                <input class="form__input" type="number" name="telefono" id="uTelefono">
+                <label for="uDireccion">Dirección</label>
+                <input class="form__input" type="text" name="direccion" id="uDireccion">
+                <input type="submit" value="Editar" class="form__button botonM" id="uEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="uCancelar">
+            </div>
+        </div>
+    </section>
+
+    <section class="modal-aUsuario" id="modal-aUsuario">
+        <div class="modal-container">
+            <form class="card-ingresar__form" action="/aniadirUsuario/0" method="post">
+                <label for="aauFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="auFotografia" value="./Imagenes/usuario">
+                <label for="auNombre">Nombre</label>
+                <input class="form__input" type="text" name="nombre" id="auNombre">
+                <label for="auCorreo">Correo</label>
+                <input class="form__input" type="email" name="correo" id="auCorreo">
+                <label for="auTelefono">Teléfono</label>
+                <input class="form__input" type="number" name="telefono" id="auTelefono">
+                <label for="auDireccion">Dirección</label>
+                <input class="form__input" type="text" name="direccion" id="auDireccion">
+                <input type="submit" value="Añadir" class="form__button botonM" id="auAñadir">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="auCancelar">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="modal-administrador" id="modal-administrador">
+        <div class="modal-container">
+            <form class="card-ingresar__form" id="mEditarAdministrador">
+                <label for="aFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="aFotografia">
+                <label for="aNombre">Nombre</label>
+                <input class="form__input" type="text" name="nombre" id="aNombre">
+                <label for="aCorreo">Correo</label>
+                <input class="form__input" type="email" name="correo" id="aCorreo">
+                <label for="aTelefono">Teléfono</label>
+                <input class="form__input" type="number" name="telefono" id="aTelefono">
+                <label for="aDireccion">Dirección</label>
+                <input class="form__input" type="text" name="direccion" id="aDireccion">
+                <input type="submit" value="Editar" class="form__button botonM" id="aEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="aCancelar">
+            </div>
+        </div>
+    </section>
+
+    <section class="modal-aAdministrador" id="modal-aAdministrador">
+        <div class="modal-container">
+            <form class="card-ingresar__form" action="aniadirAdministrador" method="post">
+                <label for="aAFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="aAFotografia">
+                <label for="aANombre">Nombre</label>
+                <input class="form__input" type="text" name="nombre" id="aANombre">
+                <label for="aACorreo">Correo</label>
+                <input class="form__input" type="email" name="correo" id="aACorreo">
+                <label for="aATelefono">Teléfono</label>
+                <input class="form__input" type="number" name="telefono" id="aATelefono">
+                <label for="aADireccion">Dirección</label>
+                <input class="form__input" type="text" name="direccion" id="aADireccion">
+                <input type="submit" value="Agregar" class="form__button botonM" id="aAEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="aACancelar">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="modal-carro" id="modal-carro">
+        <div class="modal-container">
+            <form class="card-ingresar__form" id="mEditarCarro">
+                <label for="cFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="cFotografia">
+                <label for="cModelo">Modelo</label>
+                <input class="form__input" type="text" name="modelo" id="cModelo">
+                <label for="cMarca">Marca</label>
+                <input class="form__input" type="text" name="marca" id="cMarca">
+                <label for="cAño">Año</label>
+                <input class="form__input" type="number" name="año" id="cAño">
+                <input type="submit" value="Editar" class="form__button botonM" id="cEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="cCancelar">
+            </div>
+        </div>
+    </section>
+
+    <section class="modal-aCarro" id="modal-aCarro">
+        <div class="modal-container">
+            <form class="card-ingresar__form" action="aniadirCarro" method="post">
+                <label for="acFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="acFotografia">
+                <label for="acModelo">Modelo</label>
+                <input class="form__input" type="text" name="modelo" id="acModelo">
+                <label for="acMarca">Marca</label>
+                <input class="form__input" type="text" name="marca" id="acMarca">
+                <label for="acAño">Año</label>
+                <input class="form__input" type="number" name="año" id="acAño">
+                <input type="submit" value="Agregar" class="form__button botonM" id="acEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="acCancelar">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="modal-producto" id="modal-producto">
+        <div class="modal-container">
+            <form class="card-ingresar__form" id="mEditarProducto">
+                <label for="pFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="pFotografia">
+                <label for="pNombre">Nombre</label>
+                <input class="form__input" type="text" name="nombre" id="pNombre">
+                <label for="pPrecio">Precio</label>
+                <input class="form__input" type="number" name="precio" id="pPrecio">
+                <label for="pCantidad">Cantidad</label>
+                <input class="form__input" type="number" name="cantidad" id="pCantidad">
+                <input type="submit" value="Editar" class="form__button botonM" id="pEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="pCancelar">
+            </div>
+        </div>
+    </section>
+
+    <section class="modal-aProducto" id="modal-aProducto">
+        <div class="modal-container">
+            <form class="card-ingresar__form" action="aniadirProducto" method="post">
+                <label for="apFotografia">Fotografía</label>
+                <input class="form__input" type="file" name="foto" id="apFotografia">
+                <label for="apNombre">Nombre</label>
+                <input class="form__input" type="text" name="nombre" id="apNombre">
+                <label for="apPrecio">Precio</label>
+                <input class="form__input" type="number" name="precio" id="apPrecio">
+                <label for="apCantidad">Cantidad</label>
+                <input class="form__input" type="number" name="cantidad" id="apCantidad">
+                <input type="submit" value="Agregar" class="form__button botonM" id="apEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="apCancelar">
+            </div>
+        </div>
+    </section>
+
+
+    <section class="modal-oferta" id="modal-oferta">
+        <div class="modal-container">
+            <form class="card-ingresar__form" id="mEditarRelacion">
+                <label for="id_carro">Carro</label>
+                <select name="id_carro" id="" class="form__input">
+                    <% if(carros) { %>
+                    <%      carros.forEach(carro => { %>
+                                <option value="<%=carro.id%>"><%=carro.marca%> <%=carro.modelo%> <%=carro.año%></option>
+                    <%      }) %>
+                    <% } %>
+                </select>
+                <label for="id_producto">Producto</label>
+                <select name="id_producto" id="" class="form__input">
+                    <% if(productos) { %>
+                    <%      productos.forEach(producto => { %>
+                                <option value="<%=producto.id%>"><%=producto.nombre%></option>
+                    <%      }) %>
+                    <% } %>
+                </select>
+                <input type="submit" value="Editar" class="form__button botonM" id="oEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="oCancelar">
+            </div>
+        </div>
+    </section>
+
+    <section class="modal-aOferta" id="modal-aOferta">
+        <div class="modal-container">
+            <form class="card-ingresar__form" action="aniadirRelacion" method="post">
+                <label for="id_carro">Carro</label>
+                <select name="id_carro" id="" class="form__input">
+                    <% if(carros) { %>
+                    <%      carros.forEach(carro => { %>
+                                <option value="<%=carro.id%>"><%=carro.marca%> <%=carro.modelo%> <%=carro.año%></option>
+                    <%      }) %>
+                    <% } %>
+                </select>
+                <label for="id_producto">Producto</label>
+                <select name="id_producto" id="" class="form__input">
+                    <% if(productos) { %>
+                    <%      productos.forEach(producto => { %>
+                                <option value="<%=producto.id%>"><%=producto.nombre%></option>
+                    <%      }) %>
+                    <% } %>
+                </select>
+                <input type="submit" value="Agregar" class="form__button botonM" id="aoEditar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="aoCancelar">
+            </div>
+        </div>
+    </section>
+    <section class="modal-eliminar" id="modal-eliminar">
+        <div class="modal-container container-eliminar">
+            <div class="eliminar-informacion">
+                <p class="eliminar-pregunta">¿Estas seguro que deseas eliminar este elemento?</p>
+                <p class="eliminar-elemento" id="eliminar-elemento"></p>
+                <a class="confirmar-eliminar" id="confirmarEliminar">Eliminar</a>
+            </div>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="dCancelar">
+            </div>
+        </div>
+    </section>
+    <script src="https://kit.fontawesome.com/20834a20cc.js" crossorigin="anonymous"></script>
+    <script src="./js/administrador.js"></script>
+</body>
+
+</html>

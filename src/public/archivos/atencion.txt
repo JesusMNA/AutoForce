@@ -1,0 +1,6 @@
+Nombre del usuario: chuy
+Número de telefono: undefined
+correo: jesus@correo.com
+fecha: 2022-06-02
+Informacion: esta chida la pagina
+

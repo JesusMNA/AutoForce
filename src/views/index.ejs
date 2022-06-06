@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <img src="./Imagenes/Diseño_Autoforce.png" alt="logo">
+            <a href="/">
+                <h1>AutoForce</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <% if(!session) {%>
+                <a class="header-right__ingresar" href="/ingresar">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Ingresar</p>
+                </a>
+            <% } else { %>
+                <% if(usuario.administrador) { %>
+                    <a href="/administrador" class="header-right__administrar">
+                        <i class="fa-solid fa-hammer"></i>
+                        <p>Administrador</p>
+                    </a>
+                <% } %>
+                    <a class="header-right__carrito" href="/carrito">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Carrito</p>
+                    </a>
+                    <a class="header-right__ingresar" href="/cerrarSesion">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Cerrar sesion</p>
+                    </a>
+                <% } %>
+        </div>
+    </header>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-left-cards">
+                <% if(session) { %>
+                    <a class="nav-left-cards__perfil" href="/perfil">
+                        <img src="./Imagenes/Usuarios/<%=usuario.foto%>" alt="Foto de perfil">
+                        <p><%=usuario.nombre%></p>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="nav-right"></div>
+    </nav>
+    <main>
+        <div class="main-left">
+            <figure>
+                <img src="./Imagenes/ofertas.png" alt="Imagenes de ofertas">
+            </figure>
+        </div>
+        <div class="main-right">
+            <a class="main-right__ubicacion" href="/ubicacion">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>Ubicación de la tienda</p>
+            </a>
+            <a class="main-right__sugerencias" href="/sugerencias">
+                <i class="fa-solid fa-file-circle-question"></i>
+                <p>Sugerencias</p>
+            </a>
+            <a class="main-right__atencion" href="/atencion">
+                <i class="fa-solid fa-user-tie"></i>
+                <p>Atención al cliente</p>
+            </a>
+        </div>
+        <div class="main-down" id="main-down">
+            <div class="main-down__filters">
+                <div class="section-carro-informacion">
+                    <% if (usuario.id_carro != 0) { %> 
+                        <%      carros.forEach(carro => { %>
+                        <%          if(carro.id == usuario.id_carro) { %>
+                                        <div class="tuCarro">
+                                            <div class="tuCarro-informacion">
+                                                <h1>Tu carro</h1>
+                                                <button class="fcarro" id="fCarro">Con Carro</button>
+                                                <button class="fcarro filtro" id="sfCarro">Sin Carro</button>
+                                            </div>
+                                            <div class="informacion-carro">
+                                                <div class="card-carro" id="tuCarro">
+                                                    <img src="./Imagenes/carros/<%=carro.foto%>" alt="<%=carro.modelo%>">
+                                                    <p><%=carro.marca%></p>
+                                                    <p><%=carro.modelo%></p>
+                                                    <p><%=carro.año%></p>
+                                                <div/>
+                                            </div>
+                                        </div>
+                                        </div>
+                        <%        } %>
+                        <%      }) %>    
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+            <div class="main-down__search">
+                <div class="nav-left__searchBar">
+                    <input type="text" class="nav__searchBar__text" name="buscar" id="buscar">
+                    <label for="buscar"><i class="fa-solid fa-magnifying-glass"></i></label>
+                </div>
+            </div>
+            <div class="main-down__products" id="productosSinFiltro">
+                <% if (data) { %>
+                <%      data.forEach(producto =>{ %>
+                    <div class="main-down-card articulo">
+                        <div class="main-down-card__imagen">
+                            <img src="./Imagenes/Productos/<%=producto.foto%>" alt="Imagen del producto">
+                        </div>
+                        <div class="main-down-card__informacion">
+                            <p class="informacion-nombre"><%= producto.nombre %></p>
+                            <p class="informacion-precio">$<%= producto.precio %>.00</p>
+                            <form class="informacion-opciones" action="/agregarCarrito/<%=producto.id%>" method="post">
+                                <input type="submit" value="Enviar al carrito" class="informacion-opciones__agregar">
+                            </form>
+                        </div>
+                    </div>
+                <%      }) %>
+                <% } %>
+            </div>
+            <div class="main-down__products filtro" id="productosConFiltro">
+                <%  if(relaciones) { %>
+                <%      relaciones.forEach(relacion => { %>
+                <%          if(data) { %>
+                <%              data.forEach(producto => { %>
+                <%                  if(usuario.id_carro == relacion.id_carro && producto.id == relacion.id_producto) { %>
+                    <div class="main-down-card articulo">
+                        <div class="main-down-card__imagen">
+                            <img src="./Imagenes/Productos/<%=producto.foto%>" alt="Imagen del producto">
+                        </div>
+                        <div class="main-down-card__informacion">
+                            <p class="informacion-nombre"><%= producto.nombre %></p>
+                            <p class="informacion-precio">$<%= producto.precio %>.00</p>
+                            <form class="informacion-opciones" action="/agregarCarrito/<%=producto.id%>" method="post">
+                                <input type="submit" value="Enviar al carrito" class="informacion-opciones__agregar">
+                            </form>
+                        </div>
+                    </div>
+                <%                    } %>
+                <%              }) %>
+                <%          } %>
+                <%      }) %>
+                <%  } %>
+            </div>
+        </div>
+    </main>
+    <script src="https://kit.fontawesome.com/20834a20cc.js" crossorigin="anonymous"></script>
+    <script src="./js/code.js"></script>
+</body>
+
+</html>

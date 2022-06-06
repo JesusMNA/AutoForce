@@ -1,0 +1,478 @@
+:root {
+    /* Tamaño fuentes */
+    --small: 1.4rem;
+    --medium: 2.4rem;
+    --large: 3.2rem;
+    /* Colores */
+    --white: #fefefe;
+    --soft-white: #efefef;
+    --black: #101010;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+    background-color: #ca2a00;
+    background-image: linear-gradient(45deg, #ca2a00 0%, #ff732c 50%, #e78830 100%);
+    background-size: 100% 200%;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.header-left {
+    height: 100%;
+    width: 260px;
+    min-width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-left a {
+    text-decoration: none;
+}
+
+.header-left img {
+    height: 100%;
+    width: 65px;
+    margin-left: 10px;
+}
+
+.header-left h1 {
+    width: 160px;
+    font-size: 3.4rem;
+    color: var(--white);
+    font-family: 'Pacifico', cursive;
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.header-right {
+    width: 270px;
+    min-width: 120px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.header-right a {
+    text-decoration: none;
+    height: 100%;
+    width: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-right__administrar i {
+    font-size: var(--medium);
+    color: var(--white);
+}
+
+.header-right__administrar p {
+    font-size: var(--small);
+    color: var(--white);
+}
+
+.header-right__ingresar i {
+    font-size: var(--medium);
+    color: var(--white);
+}
+
+.header-right__ingresar p {
+    font-size: var(--small);
+    color: var(--white);
+}
+
+.header-right__carrito i {
+    font-size: var(--medium);
+    color: var(--white);
+}
+
+.header-right__carrito p {
+    font-size: var(--small);
+    color: var(--white);
+}
+
+nav {
+    width: 100%;
+    height: 60px;
+    display: flex;
+}
+
+.nav-left {
+    width: 70%;
+    height: 100%;
+    padding-left: 25px;
+    padding-right: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 5px solid var(--soft-white);
+    border-bottom: 5px solid var(--soft-white);
+}
+
+.nav-left-cards {
+    width: 180px;
+    min-width: 100px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.nav-left-cards a {
+    width: 180px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+}
+
+.nav-left-cards__perfil img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.nav-left-cards__perfil p {
+    font-size: 1.8rem;
+    color: var(--white);
+    margin-left: 12px;
+}
+
+.nav-left__searchBar {
+    height: 70%;
+    width: 270px;
+    margin-right: 20px;
+    border-radius: 30px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-left__searchBar input {
+    height: 90%;
+    width: 80%;
+    border: none;
+    font-size: var(--small);
+}
+
+.nav-left__searchBar input:focus {
+    outline: none;
+}
+
+.nav-left__searchBar label {
+    width: 11%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 28px;
+    background-color: var(--black);
+}
+
+.nav-left__searchBar label i {
+    color: var(--soft-white);
+    font-size: var(--small);
+}
+
+.nav-right {
+    width: 30%;
+    height: 100%;
+    border-top: 5px solid var(--black);
+    border-bottom: 5px solid var(--black);
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.main-left {
+    width: 50%;
+    min-width: 300px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.main-left figure {
+    width: 100%;
+    padding: 50px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+.main-left img {
+    width: 300px;
+    height: 300px;
+}
+
+.main-right {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.main-right a {
+    width: 300px;
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-decoration: none;
+    color: var(--black);
+}
+
+.main-right a:visited {
+    text-decoration: none;
+}
+
+.main-right a:hover {
+    box-shadow: 0px 0px 8px var(--black);
+}
+
+.main-right a i {
+    font-size: var(--large);
+}
+
+.main-right a p {
+    font-size: var(--medium);
+    color: var(--soft-white);
+    text-align: center;
+}
+
+.main-down {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-down__filters {
+    width: 100%;
+    height: 140px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    border-top: 3px solid var(--black);
+    border-bottom: 3px solid var(--black);
+    color: var(--white);
+}
+
+.tuCarro {
+    width: 100%;
+    display: flex;
+}
+
+.tuCarro h1 {
+    width: 175px;
+    margin-right: 24px;
+}
+
+.informacion-carro {
+    width: 400px;
+    height: 100px;
+    background-color: rgb(216, 216, 207);
+    border: 1px solid var(--black);
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px var(--black);
+    font-size: var(--small);
+    overflow-y: auto;
+    margin-right: 24px;
+}
+
+.carro-vacio {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.carro-vacio p {
+    font-size: 2rem;
+    margin-left: 12px;
+}
+
+.card-carros {
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.card-carro {
+    height: 100%;
+    width: 100%;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+#tuCarro {
+    cursor: auto;
+}
+
+.card-carro img {
+    width: 80px;
+    height: 80px;
+}
+
+.card-carro p {
+    font-size: 2rem;
+    margin-left: 12px;
+    color: #000;
+}
+
+.radio-carro {
+    margin-left: 20px;
+}
+
+.main-down__search {
+    width: 100%;
+    height: 50px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-down__products {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.main-down-card {
+    width: 70%;
+    height: 120px;
+    margin-top: 20px;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    align-items: center;
+}
+
+.main-down-card__imagen {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-down-card__imagen img {
+    width: 100px;
+    height: 100px;
+}
+
+.main-down-card__informacion {
+    width: 320px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.informacion-nombre {
+    font-size: 1.7rem;
+    color: var(--soft-white);
+}
+
+.informacion-precio {
+    font-size: 2rem;
+    color: var(--white);
+}
+
+.informacion-opciones {
+    display: flex;
+}
+
+.informacion-opciones__cantidades {
+    width: 110px;
+    height: 25px;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid var(--black);
+}
+
+.informacion-opciones__cantidades label {
+    font-size: 1.3rem;
+}
+
+.informacion-opciones__cantidad {
+    width: 40px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.informacion-opciones__agregar {
+    width: 100px;
+    height: 25px;
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: var(--black);
+    font-size: 1.3rem;
+    text-decoration: none;
+}
+
+.informacion-opciones__agregar:hover {
+    text-decoration: underline;
+}
+
+.tuCarro-informacion button {
+    width: 140px;
+    height: 40px;
+    margin-top: 20px;
+    background-color: var(--black);
+    color: var(--white);
+    border-radius: 50px;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+.tuCarro-informacion button:hover {
+    background-color: #222;
+    box-shadow: 0px 0px 8px var(--black);
+}
+
+.filtro {
+    display: none;
+}

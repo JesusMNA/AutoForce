@@ -1,0 +1,8 @@
+Nombre del producto: tuerca cuadrada
+Descripción: sirve para carros grandes
+Tipo: tuerca
+Año: 2015
+Marca: toyota
+Modelo: corolla
+
+

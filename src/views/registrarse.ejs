@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce | Registrarse</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/registrarse.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <form action="/aniadirUsuario/1" method="post">
+        <section class="section-usuario">
+            <div class="usuario-encabezado">
+                <img src="./Imagenes/Diseño_Autoforce.png" alt="logo">
+                <a href="/">
+                    <h1>AutoForce</h1>
+                </a>
+            </div>
+            <div class="usuario-informacion">
+                <div class="usuario-informacion-personal">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" required>
+                    <label for="correo">Correo electrónico</label>
+                    <input type="text" name="correo" placeholder="Correo@ejemplo.com" required>
+                    <label for="telefono">Número de teléfono</label>
+                    <input type="text" name="telefono" required>
+                    <label for="contraseña">Contraseña</label>
+                    <input type="password" name="contraseña" id="contraseña" placeholder="********" required>
+                    <label for="foto">Elegir fotografia</label>
+                    <input type="file" name="foto" id="foto" required>
+                </div>
+                <div class="usuario-informacion-extra">
+                    <label for="cumpleaños">Fecha de nacimieto</label>
+                    <input type="date" name="cumpleaños" id="fecha" required>
+                    <label for="estado">Estado</label>
+                    <select name="estado" id="estado" class="usuario-informacion__estado" required>
+                        <option value="Aguascalientes">Aguascalientes</option>
+                        <option value="Baja California">Baja California</option>
+                        <option value="Baja California Sur">Baja California Sur</option>
+                        <option value="Campeche">Campeche</option>
+                        <option value="Chiapas">Chiapas</option>
+                        <option value="Chihuahua">Chihuahua</option>
+                        <option value="Ciudad de México">Ciudad de México</option>
+                        <option value="Coahuila">Coahuila</option>
+                        <option value="Colima">Colima</option>
+                        <option value="Durango">Durango</option>
+                        <option value="Guanajuato">Guanajuato</option>
+                        <option value="Guerrero">Guerrero</option>
+                        <option value="Hidalgo">Hidalgo</option>
+                        <option value="Jalisco">Jalisco</option>
+                        <option value="México">México</option>
+                        <option value="Michoacán">Michoacán</option>
+                        <option value="Morelos">Morelos</option>
+                        <option value="Nayarit">Nayarit</option>
+                        <option value="Nuevo León">Nuevo León</option>
+                        <option value="Oaxaca">Oaxaca</option>
+                        <option value="Puebla">Puebla</option>
+                        <option value="Querétaro">Querétaro</option>
+                        <option value="Quintana Roo">Quintana Roo</option>
+                        <option value="San Luis Potosí">San Luis Potosí</option>
+                        <option value="Sinaloa">Sinaloa</option>
+                        <option value="Sonora">Sonora</option>
+                        <option value="Tabasco">Tabasco</option>
+                        <option value="Tamaulipas">Tamaulipas</option>
+                        <option value="Tlaxcala">Tlaxcala</option>
+                        <option value="Veracruz">Veracruz</option>
+                        <option value="Yucatán">Yucatán</option>
+                        <option value="Zacatecas">Zacatecas</option>
+                    </select>
+                    <label for="ciudad">Ciudad</label>
+                    <input type="text" name="ciudad" required>
+                    <label for="direccion">Dirección</label>
+                    <input type="text" name="direccion" required>
+                    <label for="cp">Código postal</label>
+                    <input type="number" name="cp" required>
+                </div>
+                <div class="usuario-informacion-confirmar">
+                    <input type="submit" value="Confirmar">
+                </div>
+            </div>
+        </section>
+        <section class="section-carro">
+            <div class="section-carro-titulo">
+                <h1>Automovil</h1>
+            </div>
+            <div class="section-carro-informacion">
+                <div name="id_carro" id="" class="informacion-carro">
+                    <label for="carro-vacio" class="carro-vacio">
+                        <p>Sin carro</p>
+                        <input type="radio" id="carro-vacio" value="0" name="id_carro" class="radio-carro">
+                    </label>
+                    <% if (carros) { %> 
+                    <%      carros.forEach(carro => { %>
+                                <div value="<%=carro.id%>" class="card-carros">
+                                    <label for="<%=carro.id%>" class="card-carro">
+                                        <img src="./Imagenes/carros/<%=carro.foto%>" alt="<%=carro.modelo%>">
+                                        <p><%=carro.marca%></p>
+                                        <p><%=carro.modelo%></p>
+                                        <p><%=carro.año%></p>
+                                    </label>
+                                    <input type="radio" id="<%=carro.id%>" value="<%=carro.id%>" name="id_carro" class="radio-carro">
+                                </div>
+                    <%      }) %>    
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </form>
+</body>
+
+</html>

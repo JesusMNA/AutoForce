@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce | Carrito de compras</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/carrito.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <% let total = 0 %>
+    <header>
+        <div class="header-left">
+            <img src="./Imagenes/Diseño_Autoforce.png" alt="logo">
+            <a href="/">
+                <h1>AutoForce</h1>
+            </a>
+        </div>
+        <div class="header-right">
+            <% if(!session) {%>
+                <a class="header-right__ingresar" href="/ingresar">
+                    <i class="fa-solid fa-user"></i>
+                    <p>Ingresar</p>
+                </a>
+            <% } else { %>
+                <% if(usuario.administrador) { %>
+                    <a href="/administrador" class="header-right__administrar">
+                        <i class="fa-solid fa-hammer"></i>
+                        <p>Administrador</p>
+                    </a>
+                <% } %>
+                    <a class="header-right__carrito" href="/carrito">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Carrito</p>
+                    </a>
+                    <a class="header-right__ingresar" href="/cerrarSesion">
+                        <i class="fa-solid fa-user"></i>
+                        <p>Cerrar sesion</p>
+                    </a>
+                <% } %>
+        </div>
+    </header>
+    <nav>
+        <div class="nav-left">
+            <div class="nav-left-cards">
+                <% if(session) { %>
+                    <a class="nav-left-cards__perfil" href="/perfil">
+                        <img src="./Imagenes/Usuarios/<%=usuario.foto%>" alt="Foto de perfil">
+                        <p><%=usuario.nombre%></p>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+        <div class="nav-right"></div>
+    </nav>
+    <main>
+        <div class="main-left">
+            <% if(relacion) { %>
+            <%      relacion.forEach(rel => { %>
+            <%          productos.forEach(producto => { %>
+            <%              if(rel.id_producto == producto.id) { %>
+                <% total += producto.precio%>
+                <div class="main-left-card">
+                    <div class="main-left-card__imagen">
+                        <img src="./Imagenes/Productos/<%=producto.foto%>" alt="Imagen del producto">
+                    </div>
+                    <div class="main-left-card__informacion">
+                        <p class="informacion-nombre"><%=producto.nombre%></p>
+                        <p class="informacion-precio">$<%=producto.precio%></p>
+                        <form class="informacion-opciones" action='/eliminarCarrito/<%=producto.id%>' method="get">
+                            <button class="informacion-opciones__eliminar">Eliminar</button>
+                        </form>
+                    </div>
+                </div>
+            <%              } %>
+            <%          })  %>
+            <%      }) %>
+            <% } %>
+            </div>
+        <div class="main-right">
+            <div class="main-right-card">
+                <div class="main-right-card__titulo">
+                    <h2>Mi Carrito</h2>
+                </div>
+                <div class="main-right-card__informacion">
+                    <h2>Total de productos: <%=Object.keys(relacion).length%></h2>
+                    <p>Precio a pagar: $<%=total%></p>
+                    <button id="pagar">Pagar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="modal-pagar" id="modal-pagar">
+        <div class="modal-container">
+            <form class="card-ingresar__titulo">
+                <label for="pago">Metodo de pago</label>
+                <select name="pago" id="pago">
+                    <option value="paypal">PayPal</option>
+                    <option value="credito">Tarjeta de credito</option>
+                    <option value="oxxo">Oxxo</option>
+                </select>
+                <label for="ubicacion">Ubicación</label>
+                <input type="text" name="ubicacion" required>
+            </form>
+            <form class="card-ingresar__form" action="/comprarCarrito" method="get">
+                <h1>Total a pagar: $<%=total%></h1>
+                <p>Total de productos: <%=Object.keys(relacion).length%></p>
+                <input type="submit" value="Confirmar compra" class="form__button" id="bCambiar">
+            </form>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cancelar" class="form__button" id="bCancelar">
+            </div>
+        </div>
+    </section>
+    <script src="./js/carrito.js"></script>
+    <script src="https://kit.fontawesome.com/20834a20cc.js" crossorigin="anonymous"></script>
+</body>
+
+</html>

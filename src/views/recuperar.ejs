@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoForce | Recuperar contraseña</title>
+    <link rel="shortcut icon" href="./Imagenes/Diseño_Autoforce.png">
+    <link rel="stylesheet" href="./css/recuperar.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <main>
+        <section class="card">
+            <form class="card-ingresar__titulo">
+                <label for="correo">Correo Electrónico</label>
+                <input type="text" name="correo" placeholder="Correo del que desea recuperar la contraseña">
+                <input type="submit" value="Enviar" id="enviar">
+            </form>
+            <div class="card-ingresar__form">
+                <label for="codigo">Código</label>
+                <input class="form__input" type="number" name="codigo" id="codigo" placeholder="Introduzca el codigo que le llegó al correo">
+                <label for="nuevaContraseña">Nueva contraseña</label>
+                <input class="form__input" type="password" name="nuevaContraseña" id="nuevaContraseña" placeholder="*********">
+                <label for="confContraseña">Confirmar contraseña</label>
+                <input class="form__input" type="password" name="nuevaContraseña" id="nuevaContraseña" placeholder="*********">
+            </div>
+            <div class="card-cambiar-confirmar">
+                <input type="submit" value="Cambiar contraseña" class="form__button">
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
