@@ -1,2 +1,2 @@
 # AutoForce
-carrito de compras con manejo de usuarios e inventario usando node.js y mysql
+Carrito de compras con manejo de usuarios e inventario usando node.js y mysql
