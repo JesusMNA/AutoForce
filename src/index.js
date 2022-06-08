@@ -5,7 +5,6 @@ const morgan = require('morgan');
 const mysql = require('mysql');
 const session = require('express-session');
 const myConnection = require('express-myconnection');
-const consultas = require('./mysql_conector');
 const app = express();
 
 // Importando rutas
@@ -19,11 +18,10 @@ app.set('views', path.join(__dirname, 'views'));
 // Middlewares
 app.use(morgan('dev'));
 app.use(myConnection(mysql, {
-    host: 'localhost',
+    host: 'db4free.net',
     user: 'jesus',
-    password: 'jesus123',
-    port: 3306,
-    database: 'autoforce',
+    password: 'jesus12',
+    database: 'autoxforce',
     multipleStatements: true
 }, 'single'))
 app.use(express.urlencoded({ extended: false }));
