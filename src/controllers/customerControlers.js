@@ -1,4 +1,3 @@
-const bcrypt = require('bcrypt');
 const fs = require('fs');
 
 const sugerencias = 'src/public/archivos/sugerencias.txt';
