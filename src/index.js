@@ -19,8 +19,8 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(morgan('dev'));
 app.use(myConnection(mysql, {
     host: 'db4free.net',
-    user: 'jesus',
-    password: 'jesus12',
+    user: 'jesus12',
+    password: 'jesus123',
     database: 'autoxforce',
     multipleStatements: true
 }, 'single'))
