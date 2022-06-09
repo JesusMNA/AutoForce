@@ -21,6 +21,7 @@ app.use(myConnection(mysql, {
     host: 'db4free.net',
     user: 'jesus12',
     password: 'jesus123',
+    port: '3306',
     database: 'autoxforce',
     multipleStatements: true
 }, 'single'))
